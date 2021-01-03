@@ -1,6 +1,7 @@
 import GuessGame
 import MemoryGame
 import CurrencyRouletteGame
+import Scores
 
 global user_name, game_name, game_difficulty
 games_names_list = ['Memory Game', 'Guess Game', 'Currency Roulette']
@@ -22,11 +23,14 @@ def load_game():
     select_game()
     select_game_difficulty()
     if game_name == games_names_list[0]:
-        MemoryGame.play(game_difficulty)
+        if MemoryGame.play(game_difficulty):
+            Scores.add_score(game_difficulty)
     elif game_name == games_names_list[1]:
-        GuessGame.play(game_difficulty)
+        if GuessGame.play(game_difficulty):
+            Scores.add_score(game_difficulty)
     elif game_name == games_names_list[2]:
-        CurrencyRouletteGame.play(game_difficulty)
+        if CurrencyRouletteGame.play(game_difficulty):
+            Scores.add_score(game_difficulty)
 
 
 def select_game():
